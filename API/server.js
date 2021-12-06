@@ -24,3 +24,6 @@ const server = http.Server(app);
 server.listen(port, host, () => {
     console.log(`Server running at  http://${host}:${port}/`);
 });
+
+//###!!! MANUAL SEQUELIZE !!!####//
+//### https://sequelize.org/master/manual/ ###//

@@ -2,16 +2,19 @@
   "name": "LP_API",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "dependencies": {
     "express": "^4.17.1",
-    "nodemon": "^2.0.15",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.12.0-alpha.1"
+    "nodemon": "^2.0.15",
+    "sequelize": "^6.12.0-beta.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "sequelize-cli": "^6.3.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon API/server.js"
   },
   "repository": {
     "type": "git",

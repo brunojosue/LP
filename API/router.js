@@ -1,9 +1,10 @@
 const express = require('express');
+const controllers = require('./controllers');
 
 function initialize(){
     let api = express();
     
-    //api.use('/comodities', comAPI());
+    api.use('/users', controllers.users);
 
     return api;
 }
