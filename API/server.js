@@ -1,22 +1,14 @@
+const app = require('./app');
 const http = require('http');
-const express = require('express');
-let router = require('./router');
 
+const server = http.Server(app);
 
-const host = '127.0.0.1';
-const port = process.env.PORT || 3000;
-
-var app = express();
-
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.set('trust proxy', true);
-
-app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
+server.listen(config.server.port, config.server.host, () => {
+	console.log(`Server running at http://${config.server.host}:${config.server.port}/`);
 });
+
+
+
 
 app.use(router.initialize());
 const server = http.Server(app);
