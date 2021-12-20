@@ -1,30 +1,35 @@
 {
-  "name": "LP_API",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "dependencies": {
-    "express": "^4.17.1",
-    "mysql2": "^2.3.3",
-    "nodemon": "^2.0.15",
-    "sequelize": "^6.12.0-beta.1"
-  },
-  "devDependencies": {
-    "sequelize-cli": "^6.3.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon API/server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/brunojosue/LP.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/brunojosue/LP/issues"
-  },
-  "homepage": "https://github.com/brunojosue/LP#readme"
+	"name": "lp-project",
+	"version": "1.0.0",
+	"description": "This is an evaluation project for the unit LP.",
+	"main": "server.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "nodemon API/server.js",
+		"dev": "cross-env NODE_ENV=development nodemon API/server.js",
+		"prod": "cross-env NODE_ENV=production API/server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/brunojosue/LP.git"
+	},
+	"keywords": [
+		"NodeJs",
+		"MySQL"
+	],
+	"author": "DWDM",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/brunojosue/LP/issues"
+	},
+	"dependencies": {
+		"express": "^4.17.2",
+		"mysql2": "^2.3.3",
+		"sequelize": "^6.12.0"
+	},
+	"devDependencies": {
+		"cross-env": "^7.0.3",
+		"dotenv": "^10.0.0",
+		"nodemon": "^2.0.15"
+	}
 }
