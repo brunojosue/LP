@@ -2,9 +2,11 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "lp",
+    "database": "LP_DB",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "secret": "supersecret",
+    "expiresPassword" : 86400
   },
   "test": {
     "username": "root",

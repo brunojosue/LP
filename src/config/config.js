@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const config = {
-	development: {
+	production: {
 		server: {
 			host: process.env.SERVER_HOST || '127.0.0.1',
 			port: process.env.SERVER_PORT || 3000,
@@ -15,7 +15,6 @@ const config = {
 			password: process.env.DATABASE_PASSWORD || null,
 		},
 	},
-	production: {},
 };
 
 module.exports = config;
