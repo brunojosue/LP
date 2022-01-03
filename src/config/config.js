@@ -12,7 +12,7 @@ const config = {
 			port: process.env.DATABASE_PORT || 3306,
 			name: process.env.DATABASE_NAME || 'lp',
 			username: process.env.DATABASE_USERNAME || 'root',
-			password: process.env.DATABASE_PASSWORD || '',
+			password: process.env.DATABASE_PASSWORD || null,
 		},
 	},
 	production: {},

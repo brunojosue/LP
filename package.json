@@ -2,7 +2,7 @@
 	"name": "lp-project",
 	"version": "1.0.0",
 	"description": "This is an evaluation project for the unit LP.",
-	"main": "server.js",
+	"main": "./src/server.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "nodemon API/server.js",
@@ -23,6 +23,7 @@
 		"url": "https://github.com/brunojosue/LP/issues"
 	},
 	"dependencies": {
+		"cookie-parser": "^1.4.6",
 		"cors": "^2.8.5",
 		"express": "^4.17.2",
 		"mysql2": "^2.3.3",
