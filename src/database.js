@@ -1,15 +1,15 @@
-const config = require('./src/config/config')[process.env.NODE_ENV || 'development'];
-const { Sequelize } = require('sequelize');
+const config = require('./config/config')[process.env.NODE_ENV || 'development'];
+const mysql = require('mysql');
 
-const sequelize = new Sequelize(
-	config.development.name,
-	config.development.username,
-	config.development.password,
-	{
-		host: config.development.host,
-		port: config.development.port,
-		dialect: config.development.type,
-	}
-);
+const pool = mysql.createPool({
+	host: config.database.host,
+	port: config.database.port,
+	database: config.database.name,
+	user: config.database.username,
+	password: config.database.password,
+	charset: config.database.charset,
+	connectionLimit: parseInt(config.database.limit),
+	connectTimeout: parseInt(config.database.timeout),
+});
 
-module.exports = sequelize;
+module.exports = pool;
