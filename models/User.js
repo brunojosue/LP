@@ -1,6 +1,10 @@
-const User = (sequelize, DataTypes) => {
+
+const User = ( sequelize, DataTypes) => {
     return sequelize.define('User', {
-        firstName: DataTypes.STRING,
+        name: DataTypes.STRING,
+        email: DataTypes.STRING,
+        password: DataTypes.TEXT,
+        phoneNumber: DataTypes.BIGINT,
     });
 };
 
