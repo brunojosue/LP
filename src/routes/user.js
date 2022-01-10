@@ -7,7 +7,7 @@ function UserRouter() {
 	router.use(express.urlencoded({ limit: '100mb', extended: true }));
 
 	router.route('/').get(async (req, res, next) => {
-		pool.getConnection(function (error, connection) {
+		pool.getConnection((error, connection) => {
 			if (error) console.error(error);
 			const query = 'SELECT * FROM users';
 			connection.query(query, (error, results) => {
@@ -20,16 +20,15 @@ function UserRouter() {
 	});
 
 	router.route('/').post(async (req, res, next) => {
-		pool.getConnection(function (error, connection) {
+		pool.getConnection((error, connection) => {
 			if (error) console.error(error);
 			const data = {
-				idusers: null,
 				name: req.body.name,
 				email: req.body.email,
 				password: req.body.password,
 				phone_number: req.body.phone,
 			};
-			const query = 'INSERT INTO users VALUES (?,?,?,?,?)';
+			const query = 'INSERT INTO users (name,email,password,phone_number) VALUES (?,?,?,?)';
 			connection.query(query, Object.values(data), (error, results) => {
 				connection.release();
 				if (error) console.error(error);
@@ -40,7 +39,7 @@ function UserRouter() {
 	});
 
 	router.route('/:id').put(async (req, res, next) => {
-		pool.getConnection(function (error, connection) {
+		pool.getConnection((error, connection) => {
 			if (error) console.error(error);
 			const data = {
 				name: req.body.name,
@@ -60,7 +59,7 @@ function UserRouter() {
 	});
 
 	router.route('/:id').delete(async (req, res, next) => {
-		pool.getConnection(function (error, connection) {
+		pool.getConnection((error, connection) => {
 			if (error) console.error(error);
 			const data = {
 				idusers: req.params.id,
