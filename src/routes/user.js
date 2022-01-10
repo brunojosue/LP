@@ -13,19 +13,8 @@ function UserRouter() {
 			connection.query(query, (error, results) => {
 				connection.release();
 				if (error) console.error(error);
-				if (!results) {
-					res.status(200).send({
-						status: 404,
-						message: 'Users unsuccessfully found!',
-						data: [],
-					});
-				} else {
-					res.status(200).send({
-						status: 200,
-						message: 'Users successfully found!',
-						data: results,
-					});
-				}
+				if (!results) res.status(200).send({ tatus: 404, message: 'Users unsuccessfully found!', data: [] });
+				res.status(200).send({ status: 200, message: 'Users successfully found!', data: results });
 			});
 		});
 	});
@@ -44,19 +33,8 @@ function UserRouter() {
 			connection.query(query, Object.values(data), (error, results) => {
 				connection.release();
 				if (error) console.error(error);
-				if (!results) {
-					res.status(200).send({
-						status: 400,
-						message: 'User unsuccessfully created!',
-						data: [],
-					});
-				} else {
-					res.status(200).send({
-						status: 201,
-						message: 'User successfully created!',
-						data: results,
-					});
-				}
+				if (!results) res.status(200).send({ status: 400, message: 'User unsuccessfully created!', data: [] });
+				res.status(200).send({ status: 201, message: 'User successfully created!', data: results });
 			});
 		});
 	});
@@ -75,19 +53,8 @@ function UserRouter() {
 			connection.query(query, Object.values(data), (error, results) => {
 				connection.release();
 				if (error) console.error(error);
-				if (!results) {
-					res.status(200).send({
-						status: 400,
-						message: 'User unsuccessfully updated!',
-						data: [],
-					});
-				} else {
-					res.status(200).send({
-						status: 200,
-						message: 'User successfully updated!',
-						data: results,
-					});
-				}
+				if (!results) res.status(200).send({ status: 400, message: 'User unsuccessfully updated!', data: [] }); 
+				res.status(200).send({ status: 200, message: 'User successfully updated!', data: results }); 
 			});
 		});
 	});
@@ -102,19 +69,8 @@ function UserRouter() {
 			connection.query(query, Object.values(data), (error, results) => {
 				connection.release();
 				if (error) console.error(error);
-				if (!results) {
-					res.status(200).send({
-						status: 400,
-						message: 'User unsuccessfully deleted!',
-						data: [],
-					});
-				} else {
-					res.status(200).send({
-						status: 200,
-						message: 'User successfully deleted!',
-						data: results,
-					});
-				}
+				if (!results) res.status(200).send({ status: 400, message: 'User unsuccessfully deleted!', data: [] });
+				res.status(200).send({ status: 200, message: 'User successfully deleted!', data: results });
 			});
 		});
 	});
