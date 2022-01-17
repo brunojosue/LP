@@ -59,7 +59,7 @@ function WorkoutRouter() {
 		pool.getConnection(function (error, connection) {
 			if (error) console.error(error);
 			const data = {
-				iddeck: req.params.id,
+				idworkout: req.params.id,
 			};
 			const query = 'DELETE FROM workout WHERE idworkout = ?';
 			connection.query(query, Object.values(data), (error, results) => {
