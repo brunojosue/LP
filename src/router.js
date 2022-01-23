@@ -8,6 +8,8 @@ const WorkoutRouter = require('./routes/workout');
 const CardsRouter = require('./routes/cards');
 const CardsWorkoutRouter = require('./routes/card_workout');
 const ExerciseWorkoutRouter = require('./routes/exercise_workout');
+const HistoryRouter = require('./routes/history');
+const CardTimeRouter = require('./routes/card_time');
 
 function initialize() {
 	const api = express();
@@ -22,6 +24,8 @@ function initialize() {
 	api.use('/cards', CardsRouter());
 	api.use('/cards_workout', CardsWorkoutRouter());
 	api.use('/exercise_workout', ExerciseWorkoutRouter());
+	api.use('/history', HistoryRouter());
+	api.use('/card_time', CardTimeRouter());
 
 	return api;
 }

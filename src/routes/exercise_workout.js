@@ -23,9 +23,9 @@ function ExerciseWorkoutRouter() {
 		pool.getConnection(function (error, connection) {
 			if (error) console.error(error);
 			const data = {
-				exercice_idexercice: req.body.exercice_idexercice,
+				exercice_idExercice: req.body.exercice_idExercice,
 				workout_idworkout: req.body.workout_idworkout,
-				nipe: req.body.nipe,
+				Nipe: req.body.Nipe,
 			};
 			const query = 'INSERT INTO exercice_has_workout VALUES (?,?,?)';
 			connection.query(query, Object.values(data), (error, results) => {
@@ -41,13 +41,13 @@ function ExerciseWorkoutRouter() {
 		pool.getConnection(function (error, connection) {
 			if (error) console.error(error);
 			const data = {
-                exercice_idexercice: req.body.exercice_idexercice,
-				workout_idworkout: req.body.workout_idworkout,
-				nipe: req.body.nipe,
-                exercice_idexercice: req.params.id_exercise,
+               /* exercice_idExercice: req.body.exercice_idexercice,
+				workout_idworkout: req.body.workout_idworkout,*/
+				Nipe: req.body.Nipe,
+                exercice_idExercice: req.params.id_exercise,
                 workout_idworkout: req.params.id_workout,
 			};
-			const query = 'UPDATE exercice_has_workout SET exercice_idexercice = ?, workout_idworkout = ?, nipe = ? WHERE id_exercise = ? AND id_workout = ?';
+			const query = 'UPDATE exercice_has_workout SET Nipe = ? WHERE exercice_idExercice = ? AND workout_idworkout = ?';
 			connection.query(query, Object.values(data), (error, results) => {
 				connection.release();
 				if (error) console.error(error);
@@ -61,10 +61,10 @@ function ExerciseWorkoutRouter() {
 		pool.getConnection(function (error, connection) {
 			if (error) console.error(error);
 			const data = {
-				exercice_idexercice: req.params.id_exercise,
+				exercice_idExercice: req.params.id_exercise,
                 workout_idworkout: req.params.id_workout,
 			};
-			const query = 'DELETE FROM exercice_has_workout WHERE id_exercise = ? AND id_workout = ?';
+			const query = 'DELETE FROM exercice_has_workout WHERE exercice_idExercice = ? AND workout_idworkout = ?';
 			connection.query(query, Object.values(data), (error, results) => {
 				connection.release();
 				if (error) console.error(error);
