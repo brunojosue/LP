@@ -16,13 +16,13 @@ function AuthRouter() {
 				name: req.body.name,
 				email: req.body.email,
 				password: await bcrypt.hash(req.body.password, 10),
-				phone_number: req.body.phone,
+				phone_number: req.body.phone_number,
 			};
 			const query = 'INSERT INTO users (name,email,password,phone_number) VALUES (?,?,?,?)';
 			connection.query(query, Object.values(data), async (error, results) => {
 				connection.release();
 				if (error) console.error(error);
-				if (results && !results.length) res.status(200).send({ status: 400, auth: false, message: 'Unsuccessfully signed up!', data: [] });
+				if (!results && !results.length) res.status(400).send({ status: 400, auth: false, message: 'Unsuccessfully signed up!', data: [] });
                 const token = await jwt.sign({ email: data.email }, 'FLG-LP@2122', { algorithm: 'HS256' }, { expiresIn: 1800000 })
 				res.cookie('token', token, {maxAge: 1800000, expires: new Date(Date.now() + 1800000), httpOnly: true})
                 .status(200).send({ status: 200, auth: true, message: 'Successfully signed up!', data: results });
@@ -31,32 +31,32 @@ function AuthRouter() {
 	});
 
 	router.route('/sign-in').post(async (req, res, next) => {
-		pool.getConnection(async (error, connection) => {
-			if (error) console.error(error);
-			const data = {
-				email: req.body.email,
-				password: req.body.password,
-			};
-			const query = 'SELECT * FROM users WHERE email = ?';
-			connection.query(query, Object.values(data), async (error, results) => {
-				connection.release();
-				if (error) console.error(error);
-				if (results && !results.length) res.status(200).send({ status: 400, auth: false, message: 'Unsuccessfully signed in!', data: [] });
-                const match = await bcrypt.compare(data.password, results.password);
+        pool.getConnection(async (error, connection) => {
+            if (error) console.error(error);
+            const data = {
+                email: req.body.email,
+                password: req.body.password,
+            };
+            const query = 'SELECT * FROM users WHERE email = ?';
+            connection.query(query, Object.values(data), async (error, results) => {
+                connection.release();
+                if (error) console.error(error);
+                if (results && !results.length) res.status(200).send({ status: 400, auth: false, message: 'Unsuccessfully signed in!', data: [] });
+                const match = bcrypt.compare(data.password, results[0].password);
                 console.log(match);
                 if(!match) res.status(200).send({ status: 400, auth: false, message: 'Email or password are wrong!', data: [] });
                 const token = await jwt.sign({ email: data.email }, 'FLG-LP@2122', { algorithm: 'HS256' }, { expiresIn: 1800000 })
-				res.cookie('token', token, {maxAge: 1800000, expires: new Date(Date.now() + 1800000), httpOnly: true})
+                res.cookie('token', token, {maxAge: 1800000, expires: new Date(Date.now() + 1800000), httpOnly: true})
                 .status(200).send({ status: 200, auth: true, message: 'Successfully signed in!', data: results });
-			});
-		});
-	});
+            });
+        });
+    });
 
 	router.route('/sign-out').get(async (req, res, next) => {
-        res.clearCookie('token').status(200).send({ status: 200, auth: false, message: ''})
+        res.clearCookie('token').status(200).send({ status: 200, auth: false, message: 'Users sucsessfully sign out'})
 	});
 
-	router.route('/signed').get(async (req, res, next) => {
+	router.route('/signed/:id').delete(async (req, res, next) => {
 		pool.getConnection((error, connection) => {
 			if (error) console.error(error);
 			const data = {
